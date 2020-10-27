@@ -39,7 +39,7 @@ foodRouter
       .then(food => {
         res
           .status(201)
-          .location(path.posix.join(req.originalUrl, `/${food.food_id}`))
+          .location(path.posix.join(req.originalUrl, `/${food_id}`))
           .json(serializeFood(food))
       })
       .catch(next)
@@ -50,7 +50,7 @@ foodRouter
   .all((req, res, next) => {
     foodService.getById(
       req.app.get('db'),
-      req.params.food.food_id
+      req.params.food_id
     )
       .then(food => {
         if (!food) {
@@ -69,7 +69,7 @@ foodRouter
   .delete((req, res, next) => {
     foodService.deleteFood(
       req.app.get('db'),
-      req.params.food.food_id
+      req.params.food_id
     )
       .then(numRowsAffected => {
         res.status(204).end()
@@ -90,7 +90,7 @@ foodRouter
 
     foodService.updateFood(
       req.app.get('db'),
-      req.params.food.food_id,
+      req.params.food_id,
       foodToUpdate
     )
       .then(numRowsAffected => {
