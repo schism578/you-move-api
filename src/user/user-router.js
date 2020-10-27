@@ -56,7 +56,7 @@ userRouter
   .all((req, res, next) => {
     userService.getById(
       req.app.get('db'),
-      req.params.user.user_id
+      req.params.user_id
     )
       .then(user => {
         if (!user) {
@@ -75,7 +75,7 @@ userRouter
   .delete((req, res, next) => {
     userService.deleteUser(
       req.app.get('db'),
-      req.params.user.user_id
+      req.params.user_id
     )
       .then(numRowsAffected => {
         res.status(204).end()
@@ -96,7 +96,7 @@ userRouter
 
     userService.updateUser(
       req.app.get('db'),
-      req.params.user.user_id,
+      req.params.user_id,
       userToUpdate
     )
       .then(numRowsAffected => {

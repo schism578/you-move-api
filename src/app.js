@@ -8,13 +8,11 @@ const { NODE_ENV } = require('./config')
 const app = express()
 
 const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
-    app.use(morgan(morganSetting))
-
-app.use(morgan(morganOption))
+    
+app.use(morgan(morganSetting))
 app.use(helmet())
 app.use(cors())
 
-const cors = require('cors');
 const {CLIENT_ORIGIN} = require('./config');
 
 app.use(
@@ -25,6 +23,10 @@ app.use(
 
 app.get('/user', (req, res, next) => {
        res.send('User info')
+})
+
+app.get('/food', (req, res, next) => {
+    res.send('Food info')
 })
     
 app.get('/', (req, res) => {
