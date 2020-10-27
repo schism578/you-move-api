@@ -42,7 +42,7 @@ userRouter
       req.app.get('db'),
       newUser
     )
-      .then(note => {
+      .then(user => {
         res
           .status(201)
           .location(path.posix.join(req.originalUrl, `/${user.user_id}`))
