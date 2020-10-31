@@ -4,6 +4,8 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
+const userRouter = require('./user/user-router')
+const foodRouter = require('./food/food-router')
 
 const app = express()
 
@@ -25,9 +27,11 @@ app.get('/', (req, res) => {
     res.send('Hello, world!')
 })
 
-app.use('/folders', foldersRouter);
+app.use('/user', userRouter);
 
-app.use('/notes', notesRouter);
+app.use('/log', foodRouter);
+
+app.use('/history', historyRouter);
 
 app.use(function validateBearerToken(req, res, next) {
     const apiToken = process.env.API_TOKEN
@@ -37,7 +41,6 @@ app.use(function validateBearerToken(req, res, next) {
         logger.error(`Unauthorized request to path: ${req.path}`);
         return res.status(401).json({ error: 'Unauthorized request' })
     }
-    // move to the next middleware
     next()
 })
 
