@@ -24,7 +24,7 @@ app.use('/user', userRouter);
 
 app.use('/log', foodRouter);
 
-app.use('/history', historyRouter);
+//app.use('/profile', profileRouter);
 
 app.use(function validateBearerToken(req, res, next) {
     const apiToken = process.env.API_TOKEN
