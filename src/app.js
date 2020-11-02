@@ -3,6 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
+const logger = require('./logger');
 const { NODE_ENV } = require('./config')
 const userRouter = require('./user/user-router')
 const foodRouter = require('./food/food-router')
@@ -18,6 +19,11 @@ app.use(
         origin: true,
     })
 );
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')
