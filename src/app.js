@@ -15,7 +15,7 @@ app.use(morgan(morganSetting))
 app.use(helmet())
 app.use(
     cors({
-        origin: 'http://localhost:3000/'
+        origin: CLIENT_ORIGIN,
     })
 );
 
