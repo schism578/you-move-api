@@ -1,6 +1,8 @@
 const path = require('path')
 const express = require('express')
 const userService = require('./user-service')
+const { requireAuth } = require('../middleware/jwt-auth')
+
 
 const userRouter = express.Router()
 const jsonParser = express.json()
@@ -53,6 +55,7 @@ userRouter
 
 userRouter
   .route('/:user_id')
+  .all(requireAuth)
   .all((req, res, next) => {
     userService.getById(
       req.app.get('db'),

@@ -1,7 +1,6 @@
 const path = require('path')
 const express = require('express')
 const foodService = require('./food-service')
-const { requireAuth } = require('../middleware/jwt-auth')
 
 const foodRouter = express.Router()
 const jsonParser = express.json()

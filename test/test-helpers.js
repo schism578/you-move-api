@@ -55,7 +55,7 @@ function makeUsersArray() {
   }
   
   function makeUsersFixtures() {
-    const testUsers = makeUsersArray()
+    const testUsers = makeUsersArray();
     return { testUsers }
   }
   
@@ -68,14 +68,14 @@ function makeUsersArray() {
       )
       .then(() =>
         Promise.all([
-          trx.raw(`ALTER SEQUENCE user_id minvalue 0 START WITH 1`),
-          trx.raw(`SELECT setval('user_id', 0)`),
+          trx.raw(`ALTER SEQUENCE user_profile_user_id_seq minvalue 0 START WITH 1`),
+          trx.raw(`SELECT setval('user_profile_user_id_seq', 0)`),
         ])
       )
     )
   }
   
-  function seedUsers(db, users) {
+  function seedUsersTables(db, users) {
     const preppedUsers = users.map(user => ({
       ...user,
       password: bcrypt.hashSync(user.password, 1)
@@ -84,14 +84,14 @@ function makeUsersArray() {
       .then(() =>
         // update the auto sequence to stay in sync
         db.raw(
-          `SELECT setval('user_id', ?)`,
+          `SELECT setval('user_profile_user_id_seq', ?)`,
           [users[users.length - 1].user_id],
         )
       )
   }
   
   function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
-      const token = jwt.sign({ user_id: user.user_id }, secret, {
+      const token = jwt.sign({ user_id: user.id }, secret, {
         subject: user.email,
         algorithm: 'HS256',
       })
@@ -102,6 +102,6 @@ function makeUsersArray() {
     makeUsersArray,
     makeUsersFixtures,
     cleanTables,
-    seedUsers,
+    seedUsersTables,
     makeAuthHeader
   }
