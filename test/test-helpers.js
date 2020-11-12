@@ -75,7 +75,7 @@ function makeUsersArray() {
     )
   }
   
-  function seedUsersTables(db, users) {
+  function seedUsers(db, users) {
     const preppedUsers = users.map(user => ({
       ...user,
       password: bcrypt.hashSync(user.password, 1)
@@ -102,6 +102,6 @@ function makeUsersArray() {
     makeUsersArray,
     makeUsersFixtures,
     cleanTables,
-    seedUsersTables,
+    seedUsers,
     makeAuthHeader
   }

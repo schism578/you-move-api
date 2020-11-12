@@ -31,7 +31,12 @@ const foodService = {
         return knex('food')
             .where('food_id', id)
             .update(newFood);
-    }
+    },
+
+    getFoodCalories(knex, id) {
+        return knex('calories')
+            .where({food_id: id});
+      }
 };
 
 module.exports = foodService;

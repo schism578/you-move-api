@@ -40,10 +40,13 @@ userRouter
           error: { message: `Missing '${key}' in request body` }
         })
 
-    userService.insertUser(
-      req.app.get('db'),
-      newUser
-    )
+        return userService.hashPassword(password)
+          .then(hashedPassword => {
+          newUser.password = hashedPassword
+          return userService.insertUser(
+            req.app.get('db'),
+            newUser
+          )
       .then(user => {
         res
           .status(201)
@@ -51,6 +54,7 @@ userRouter
           .json(serializeUser(user))
       })
       .catch(next)
+    })
   })
 
 userRouter

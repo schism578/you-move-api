@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express')
 const foodService = require('./food-service')
+const { requireAuth } = require('../middleware/jwt-auth')
 
 const foodRouter = express.Router()
 const jsonParser = express.json()
@@ -11,6 +12,12 @@ const serializeFood = food => ({
     item: food.food_item,
     quantity: food.food_quantity
 })
+
+const serializeCalories = calories => ({
+  ...calories,
+  calorieId: calories.calories_id,
+  calories: calories.calories
+});
 
 foodRouter
   .route('/')
@@ -47,6 +54,7 @@ foodRouter
 
 foodRouter
   .route('/:food_id')
+  .all(requireAuth)
   .all((req, res, next) => {
     foodService.getById(
       req.app.get('db'),
@@ -63,8 +71,13 @@ foodRouter
       })
       .catch(next)
   })
-  .get((req, res, next) => {
-    res.json(serializeFood(res.food))
+  .get((req,res,next) => {
+    const knexInstance = req.app.get('db');
+    foodService.getFoodCalories(knexInstance, req.params.id)
+      .then((calories)=>{
+        res.json(calories.map(calories => serializeCalories(calories)));
+      })
+      .catch(next);
   })
   .delete((req, res, next) => {
     foodService.deleteFood(

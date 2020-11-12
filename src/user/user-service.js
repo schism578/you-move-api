@@ -1,8 +1,14 @@
+const bcrypt = require('bcryptjs');
+
 const userService = {
     getUser(knex) {
         return knex
             .select('*')
             .from('user_profile');
+    },
+
+    hashPassword(password) {
+        return bcrypt.hash(password, 12)
     },
 
     insertUser(knex, newUser) {
