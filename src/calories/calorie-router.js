@@ -10,7 +10,7 @@ const serializeCalories = calories => ({
   id: calories.calories_id,
   date: calories.date,
   calories: calories.calories,
-  foodId: calories.food_id,
+  userId: calories.user_id,
 })
 
 calorieRouter
@@ -24,8 +24,8 @@ calorieRouter
       .catch(next)
   })
   .post(requireAuth, jsonParser, (req, res, next) => {
-    const { id, date, calories, foodId } = req.body
-    const newCalories = { calories_id: id, calories, food_id: foodId }
+    const { id, date, calories, userId } = req.body
+    const newCalories = { calories_id: id, calories, user_id: userId }
 
     for (const [key, value] of Object.entries(newCalories))
       if (value == null)
@@ -33,6 +33,7 @@ calorieRouter
           error: { message: `Missing '${key}' in request body` }
         })
 
+    newCalories.user_id = req.user.id;
     newCalories.date = date;
 
     calorieService.insertCalories(

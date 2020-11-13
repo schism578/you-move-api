@@ -1,0 +1,2 @@
+ALTER TABLE calories 
+ALTER COLUMN user_id INTEGER REFERENCES user_profile(user_id) ON DELETE CASCADE NOT NULL;
