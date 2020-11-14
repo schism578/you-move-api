@@ -1,2 +1,2 @@
 ALTER TABLE calories 
-ALTER COLUMN user_id INTEGER REFERENCES user_profile(user_id) ON DELETE CASCADE NOT NULL;
+ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_profile(user_id);
