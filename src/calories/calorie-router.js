@@ -15,6 +15,7 @@ const serializeCalories = calories => ({
 
 calorieRouter
   .route('/')
+  .all(requireAuth)
   .get((req, res, next) => {
     const knexInstance = req.app.get('db')
     calorieService.getAllCalories(knexInstance)
@@ -45,61 +46,6 @@ calorieRouter
           .status(201)
           .location(path.posix.join(req.originalUrl, `/${calories.calories_id}`))
           .json(serializeCalories(calories))
-      })
-      .catch(next)
-  })
-
-calorieRouter
-  .route('/:calories_id')
-  .all(requireAuth)
-  .all((req, res, next) => {
-    caloriesService.getById(
-      req.app.get('db'),
-      req.params.calories_id
-    )
-      .then(calories => {
-        if (!calories) {
-          return res.status(404).json({
-            error: { message: `Calories don't exist` }
-          })
-        }
-        res.calories = calories
-        next()
-      })
-      .catch(next)
-  })
-  .get((req, res, next) => {
-    res.json(serializeCalories(res.calories))
-  })
-  .delete((req, res, next) => {
-    calorieService.deleteCalories(
-      req.app.get('db'),
-      req.params.calories_id
-    )
-      .then(numRowsAffected => {
-        res.status(204).end()
-      })
-      .catch(next)
-  })
-  .patch(jsonParser, (req, res, next) => {
-    const { calories, date } = req.body
-    const caloriesToUpdate = { calories, date }
-
-    const numberOfValues = Object.values(caloriesToUpdate).filter(Boolean).length
-    if (numberOfValues === 0)
-      return res.status(400).json({
-        error: {
-          message: `Request body must contain either 'calories' or 'modified date'`
-        }
-      })
-
-    caloriesService.updateCalories(
-      req.app.get('db'),
-      req.params.calories_id,
-      caloriesToUpdate
-    )
-      .then(numRowsAffected => {
-        res.status(204).end()
       })
       .catch(next)
   })

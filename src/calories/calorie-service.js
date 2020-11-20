@@ -31,6 +31,12 @@ const calorieService = {
         return knex('calories')
             .where('calories_id', id)
             .update(newCalories);
+    },
+
+    getAllCalories(knex, user_id) {
+        return knex
+            .where('user_id', user_id)
+            .from('calories')
     }
 };
 

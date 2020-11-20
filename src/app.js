@@ -1,12 +1,12 @@
-require('dotenv').config()
-const express = require('express')
-const morgan = require('morgan')
-const cors = require('cors')
-const helmet = require('helmet')
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const helmet = require('helmet');
 //const logger = require('./logger');
 const { NODE_ENV } = require('./config');
 const userRouter = require('./user/user-router');
-const foodRouter = require('./food/food-router');
+const calorieRouter = require('./calories/calorie-router');
 const authRouter = require('./auth/auth-router');
 
 const app = express()
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authRouter)
 app.use('/user', userRouter)
-app.use('/log', foodRouter)
+app.use('/log', calorieRouter)
 
 
 /*app.use(function validateBearerToken(req, res, next) {

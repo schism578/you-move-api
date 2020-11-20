@@ -64,7 +64,7 @@ describe('Auth Endpoints', function() {
                 .send(userInvalidPass)
                 .expect(400, { error: `Incorrect email or password` })
             })
-            xit(`responds 200 and JWT auth token using secret when valid credentials`, () => {
+            it(`responds 200 and JWT auth token using secret when valid credentials`, () => {
                 const userValidCreds = {
                   email: testUser.email,
                   password: testUser.password,
@@ -73,7 +73,7 @@ describe('Auth Endpoints', function() {
                   { user_id: testUser.user_id },
                   process.env.JWT_SECRET,
                   {
-                    subject: testUser.email,
+                    subject: `${testUser.email}`,
                     algorithm: 'HS256',
                   }
                 )
