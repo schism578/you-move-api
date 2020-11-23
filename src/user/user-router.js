@@ -1,7 +1,6 @@
 const path = require('path')
 const express = require('express')
 const UserService = require('./user-service')
-const xss = require('xss')
 const { requireAuth } = require('../middleware/jwt-auth')
 
 
@@ -10,15 +9,15 @@ const jsonParser = express.json()
 
 const serializeUser = user => ({
     user_id: user.user_id,
-    first_name: xss(user.first_name),
-    last_name: xss(user.last_name),
-    email: xss(user.email),
+    first_name: user.first_name,
+    last_name: user.last_name,
+    email: user.email,
     password: user.password,
-    gender: xss(user.gender),
-    height: xss(user.height),
-    weight: xss(user.weight),
-    age: xss(user.age),
-    bmr: xss(user.bmr),
+    gender: user.gender,
+    height: user.height,
+    weight: user.weight,
+    age: user.age,
+    bmr: user.bmr,
 })
 
 userRouter
@@ -53,8 +52,6 @@ userRouter
         .then(hasUserWithEmail => {
             if (hasUserWithEmail)
               return res.status(400).json({ error: `Email already taken` })
-            res.send('ok')
-            .catch(next)
 
         return UserService.hashPassword(password)
         .then(hashedPassword => {
