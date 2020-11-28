@@ -25,8 +25,8 @@ calorieRouter
       .catch(next)
   })
   .post(requireAuth, jsonParser, (req, res, next) => {
-    const { id, date, calories, userId } = req.body
-    const newCalories = { calories_id: id, calories, user_id: userId }
+    const { calories } = req.body
+    const newCalories = { calories }
 
     for (const [key, value] of Object.entries(newCalories))
       if (value == null)
@@ -34,8 +34,7 @@ calorieRouter
           error: { message: `Missing '${key}' in request body` }
         })
 
-    newCalories.user_id = req.user.id;
-    newCalories.date = date;
+    newCalories.user_id = req.user.user_id;
 
     calorieService.insertCalories(
       req.app.get('db'),
