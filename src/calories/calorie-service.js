@@ -35,8 +35,9 @@ const calorieService = {
 
     getAllCalories(knex, user_id) {
         return knex
-            .where('user_id', user_id)
+            .select('*')
             .from('calories')
+            .where('user_id', user_id)
     }
 };
 

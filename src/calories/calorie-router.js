@@ -14,11 +14,11 @@ const serializeCalories = calories => ({
 })
 
 calorieRouter
-  .route('/')
+  .route('/:user_id')
   .all(requireAuth)
   .get((req, res, next) => {
-    const knexInstance = req.app.get('db')
-    calorieService.getAllCalories(knexInstance)
+    const knexInstance = req.app.get('db');
+    calorieService.getAllCalories(knexInstance, req.params.user_id)
       .then(calories => {
         res.json(calories.map(serializeCalories))
       })
