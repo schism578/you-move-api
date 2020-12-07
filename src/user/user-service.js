@@ -30,7 +30,7 @@ const UserService = {
 
     validatePassword(password) {
         if (password.length < 8) {
-          return 'Password must be longer than 8 characters'
+          return 'Password must be 8 characters'
         }
         if (password.length > 72) {
           return 'Password must be less than 72 characters'
@@ -58,10 +58,10 @@ const UserService = {
             .delete();
     },
 
-    updateUser(knex, id, newUser) {
+    updateUser(knex, id, user) {
         return knex('user_profile')
             .where('user_id', id)
-            .update(newUser);
+            .update(user);
     }
 };
 
