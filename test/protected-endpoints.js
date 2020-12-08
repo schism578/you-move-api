@@ -44,6 +44,11 @@ describe('Protected endpoints', function() {
       path: '/log',
       method: supertest(app).post,
     },
+    {
+      name: 'PATCH /user',
+      path: '/user',
+      method: supertest(app).patch,
+    },
   ]
 
   protectedEndpoints.forEach(endpoint => {
