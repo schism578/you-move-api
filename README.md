@@ -79,3 +79,11 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calories: integer,  
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id: integer  
 &nbsp;&nbsp;&nbsp;}  
+  
+### Technologies:  
+&nbsp;&nbsp;&nbsp;**Express**  
+&nbsp;&nbsp;&nbsp;**Node**  
+&nbsp;&nbsp;&nbsp;**Knex**  
+&nbsp;&nbsp;&nbsp;**Postgrator**  
+&nbsp;&nbsp;&nbsp;**Mocha, Chai, Supertest**  
+&nbsp;&nbsp;&nbsp;**JSON Web Token, bcryptjs**  
