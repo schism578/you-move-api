@@ -39,9 +39,9 @@
 #### `POST /auth/login`  
 &nbsp;&nbsp;&nbsp;Provides bcrypted secure login with JWT auth token protection.  
 #### Sample Request:  
-&nbsp;&nbsp;&nbsp;{
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;username: text required,
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password: text required
+&nbsp;&nbsp;&nbsp;{  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;username: text required,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password: text required  
 &nbsp;&nbsp;&nbsp;}
 #### Sample Response:  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;authToken: string,
