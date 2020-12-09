@@ -10,14 +10,14 @@
 &nbsp;&nbsp;&nbsp;Creates user profile storing all profile info in Express database.
 #### Sample Query:  
 &nbsp;&nbsp;&nbsp;newUser: {  
-    user_id: UUID,  
-    first_name: text required,  
-    last_name: text required,  
-    email: text required,  
-    password: text required,  
-    gender: text required,  
-    height: integer required,  
-    weight: integer required,  
-    age: integer required,  
-    bmr: integer required  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id: UUID,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;first_name: text required,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last_name: text required,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email: text required,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password: text required,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gender: text required,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: integer required,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;weight: integer required,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;age: integer required,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bmr: integer required  
 }
