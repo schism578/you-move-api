@@ -2,7 +2,7 @@ const supertest = require('supertest');
 const app = require('../src/app');
 const { expect } = require('chai');
 
-describe('GET /log', () => {
+describe.only('GET /log', () => {
     it('should return an array of calorie objects', () => {
         return supertest(app)
             .get('/log')
@@ -17,4 +17,4 @@ describe('GET /log', () => {
                 );
             })
     })
-    });
+});
