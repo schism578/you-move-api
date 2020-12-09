@@ -52,5 +52,30 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id: integer  
 &nbsp;&nbsp;&nbsp;}  
   
-### Calorie Log Endpoint  
+### Calorie Log Endpoints  
 #### `GET /log/:user_id`  
+&nbsp;&nbsp;&nbsp;Retrieves a collection of response objects of the user's calorie logs since their profile was created. Requires authentication.  
+#### Sample Request:  
+&nbsp;&nbsp;&nbsp;{  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id: integer required,  
+&nbsp;&nbsp;&nbsp;}  
+#### Sample Response:  
+&nbsp;&nbsp;&nbsp;Object(s): {  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: integer,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date: `date` format,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calories: integer,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id: integer  
+&nbsp;&nbsp;&nbsp;}  
+#### `POST /lod/:user_id`  
+&nbsp;&nbsp;&nbsp;Saves daily calorie logs to the logged in user's profile. Requires authentication.  
+#### Sample Request:  
+&nbsp;&nbsp;&nbsp;{  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calories: string required,  
+&nbsp;&nbsp;&nbsp;}  
+#### Sample Response:  
+&nbsp;&nbsp;&nbsp;Object(s): {  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: integer,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date: `date` format,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calories: integer,  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id: integer  
+&nbsp;&nbsp;&nbsp;}  
