@@ -1,4 +1,4 @@
-<img src='./src/images/favicon.jpg' alt='app icon' width='150'/>
+<img src='./images/favicon.jpg' alt='app icon' width='150'/>
 
 # YouMove API  
 
