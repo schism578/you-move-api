@@ -2,10 +2,10 @@ const supertest = require('supertest');
 const app = require('../src/app');
 const { expect } = require('chai');
 
-describe.only('GET /log', () => {
-    it('should return an array of calorie objects', () => {
+describe.only('GET /log/:user_id', () => {
+    it('should return an array of calorie objects for the user', () => {
         return supertest(app)
-            .get('/log')
+            .get('/log/:user_id')
             .expect(200)
             .expect('Content-Type', /json/)
             .then(res => {
