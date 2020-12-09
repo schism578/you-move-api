@@ -44,12 +44,12 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password: text required  
 &nbsp;&nbsp;&nbsp;}
 #### Sample Response:  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;authToken: string,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;authToken: string  
 &nbsp;&nbsp;&nbsp;Object: {  
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: integer,  
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date: `date` format,  
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calories: integer,  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id: integer
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id: integer  
 &nbsp;&nbsp;&nbsp;}  
   
 ### Calorie Log Endpoint  
