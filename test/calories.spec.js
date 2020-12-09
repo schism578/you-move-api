@@ -35,7 +35,7 @@ describe.only('Calories Endpoints', function () {
 
             requiredFields.forEach(field => {
                 const registerAttemptBody = {
-                    user_id: 'test userId',
+                    user_id: 'test user_id',
                     calories: 'test calories',
                 }
                 it(`responds with 400 required error when '${field}' is missing`, () => {

@@ -57,19 +57,19 @@ function makeUsersArray() {
   function makeCaloriesArray() {
     return [
       {
-        userId: 1,
+        user_id: 1,
         calories: '1400'
       },
       {
-        userId: 2,
+        user_id: 2,
         calories: '2400'
       },
       {
-        userId: 3,
+        user_id: 3,
         calories: '0'
       },
       {
-        userId: 4,
+        user_id: 4,
         calories: '1000000000'
       }
     ]
