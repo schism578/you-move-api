@@ -66,7 +66,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calories: integer,  
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_id: integer  
 &nbsp;&nbsp;&nbsp;}  
-#### `POST /lod/:user_id`  
+#### `POST /log/:user_id`  
 &nbsp;&nbsp;&nbsp;Saves daily calorie logs to the logged in user's profile. Requires authentication.  
 #### Sample Request:  
 &nbsp;&nbsp;&nbsp;{  
