@@ -9,7 +9,7 @@
 #### `POST /user`  
 &nbsp;&nbsp;&nbsp;Creates user profile storing all profile info in Express database.
 #### Sample Query:  
-&nbsp;&nbsp;&nbsp;`newUser: {
+&nbsp;&nbsp;&nbsp;newUser: {
     user_id: UUID,  
     first_name: text required,  
     last_name: text required,  
@@ -20,4 +20,4 @@
     weight: integer required,  
     age: integer required,  
     bmr: integer required,
-}`
+}
