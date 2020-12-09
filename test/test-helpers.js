@@ -13,7 +13,7 @@ function makeUsersArray() {
         height: '68',
         weight: '200',
         age: '45',
-        bmr: '2000'
+        bmr: '2000',
       },
       {
         user_id: 2,
@@ -25,7 +25,7 @@ function makeUsersArray() {
         height: '62',
         weight: '130',
         age: '30',
-        bmr: '2000'
+        bmr: '2000',
       },
       {
         user_id: 3,
@@ -37,7 +37,7 @@ function makeUsersArray() {
         height: '65',
         weight: '160',
         age: '35',
-        bmr: '2000'
+        bmr: '2000',
       },
       {
         user_id: 4,
@@ -49,8 +49,29 @@ function makeUsersArray() {
         height: '72',
         weight: '230',
         age: '40',
-        bmr: '2000'
+        bmr: '2000',
       },
+    ]
+  }
+
+  function makeCaloriesArray() {
+    return [
+      {
+        userId: 1,
+        calories: '1400'
+      },
+      {
+        userId: 2,
+        calories: '2400'
+      },
+      {
+        userId: 3,
+        calories: '0'
+      },
+      {
+        userId: 4,
+        calories: '1000000000'
+      }
     ]
   }
   
@@ -58,12 +79,18 @@ function makeUsersArray() {
     const testUsers = makeUsersArray();
     return { testUsers }
   }
+
+  function makeCaloriesFixtures() {
+    const testCalories = makeCaloriesArray();
+    return { testCalories }
+  }
   
   function cleanTables(db) {
     return db.transaction(trx =>
       trx.raw(
         `TRUNCATE
-          user_profile
+          user_profile,
+          calories
         `
       )
       .then(() =>
@@ -89,6 +116,20 @@ function makeUsersArray() {
         )
       )
   }
+
+  function seedCalories(db, calories) {
+    const preppedCalories = calories.map(calorie => ({
+      ...calorie
+    }))
+    return db.into('calories').insert(preppedCalories)
+      .then(() =>
+        // update the auto sequence to stay in sync
+        db.raw(
+          `SELECT setval('calories_user_id_seq', ?)`,
+          [calories[calories.length - 1].user_id],
+        )
+      )
+  }
   
   function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
       const token = jwt.sign({ user_id: user.user_id }, secret, {
@@ -100,8 +141,11 @@ function makeUsersArray() {
     
   module.exports = {
     makeUsersArray,
+    makeCaloriesArray,
     makeUsersFixtures,
+    makeCaloriesFixtures,
     cleanTables,
     seedUsers,
+    seedCalories,
     makeAuthHeader
   }
