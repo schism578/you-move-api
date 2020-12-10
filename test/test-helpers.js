@@ -89,8 +89,7 @@ function makeUsersArray() {
     return db.transaction(trx =>
       trx.raw(
         `TRUNCATE
-          user_profile,
-          calories
+          user_profile
         `
       )
       .then(() =>
