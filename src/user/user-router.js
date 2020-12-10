@@ -8,16 +8,16 @@ const userRouter = express.Router()
 const jsonParser = express.json()
 
 const serializeUser = user => ({
-    user_id: user.user_id,
-    first_name: user.first_name,
-    last_name: user.last_name,
-    email: user.email,
-    password: user.password,
-    gender: user.gender,
-    height: user.height,
-    weight: user.weight,
-    age: user.age,
-    bmr: user.bmr,
+  user_id: user.user_id,
+  first_name: user.first_name,
+  last_name: user.last_name,
+  email: user.email,
+  password: user.password,
+  gender: user.gender,
+  height: user.height,
+  weight: user.weight,
+  age: user.age,
+  bmr: user.bmr,
 })
 
 userRouter
@@ -39,42 +39,42 @@ userRouter
         return res.status(400).json({
           error: `Missing '${key}' in request body`
         })
-        
-      const passwordError = UserService.validatePassword(password)
 
-      if (passwordError)
-        return res.status(400).json({ error: passwordError })
-    
-        UserService.hasUserWithEmail(
-          req.app.get('db'),
-          email
-        )
-        .then(hasUserWithEmail => {
-            if (hasUserWithEmail)
-              return res.status(400).json({ error: `Email already taken` })
+    const passwordError = UserService.validatePassword(password)
+
+    if (passwordError)
+      return res.status(400).json({ error: passwordError })
+
+    UserService.hasUserWithEmail(
+      req.app.get('db'),
+      email
+    )
+      .then(hasUserWithEmail => {
+        if (hasUserWithEmail)
+          return res.status(400).json({ error: `Email already taken` })
 
         return UserService.hashPassword(password)
-        .then(hashedPassword => {
-          newUser.password = hashedPassword
-          
-        return UserService.insertUser(
-            req.app.get('db'),
-            newUser
-        )
-        .then(user => {
-          res
-            .status(201)
-            .location(path.posix.join(req.originalUrl, `/${user.user_id}`))
-            const sub = user.email
-            const payload = { user_id: user.user_id }
-            .json(
-              {authToken: AuthService.createJwt(sub, payload)},
-              serializeUser(user))
-        })
-        })
-        })
-        .catch(next)
-    })
+          .then(hashedPassword => {
+            newUser.password = hashedPassword
+
+            return UserService.insertUser(
+              req.app.get('db'),
+              newUser
+            )
+              .then(user => {
+                res
+                  .status(201)
+                  .location(path.posix.join(req.originalUrl, `/${user.user_id}`))
+                const sub = user.email
+                const payload = { user_id: user.user_id }
+                  .json(
+                    { authToken: AuthService.createJwt(sub, payload) },
+                    serializeUser(user))
+              })
+          })
+      })
+      .catch(next)
+  })
 
 
 userRouter
