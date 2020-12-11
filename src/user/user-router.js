@@ -111,8 +111,17 @@ userRouter
       .catch(next)
   })
   .patch(jsonParser, (req, res, next) => {
-    const { first_name, last_name, email, password, height, weight, age, bmr } = req.body
-    const userToUpdate = { first_name, last_name, email, password, height, weight, age, bmr }
+    const { currentUser } = req.body
+    const userToUpdate = { 
+        first_name: currentUser.first_name.value, 
+        last_name: currentUser.last_name.value, 
+        email: currentUser.email.value, 
+        password: currentUser.password.vlaue, 
+        height: currentUser.height.value, 
+        weight: currentUser.weight.value, 
+        age: currentUser.age.value, 
+        bmr: currentUser.bmr.value 
+    }
     console.log(userToUpdate)
     console.log(req.body)
     const numberOfValues = Object.values(userToUpdate).length
