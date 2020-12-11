@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express')
 const UserService = require('./user-service')
-const AuthService = require('./auth-service')
+const AuthService = require('../auth/auth-service')
 const { requireAuth } = require('../middleware/jwt-auth')
 
 const userRouter = express.Router()
