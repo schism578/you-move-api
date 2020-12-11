@@ -116,7 +116,7 @@ userRouter
         first_name: currentUser.first_name.value, 
         last_name: currentUser.last_name.value, 
         email: currentUser.email.value, 
-        password: currentUser.password.vlaue, 
+        password: currentUser.password.value, 
         height: currentUser.height.value, 
         weight: currentUser.weight.value, 
         age: currentUser.age.value, 
