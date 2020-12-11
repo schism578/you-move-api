@@ -111,14 +111,15 @@ userRouter
       .catch(next)
   })
   .patch(jsonParser, (req, res, next) => {
-    const { email, password, height, weight, age, bmr } = req.body
-    const userToUpdate = { email, password, height, weight, age, bmr }
+    const { first_name, last_name, email, password, height, weight, age, bmr } = req.body
+    const userToUpdate = { first_name, last_name, email, password, height, weight, age, bmr }
 
-    const numberOfValues = Object.values(userToUpdate).filter(Boolean).length
+    const numberOfValues = Object.values(userToUpdate).length
     if (numberOfValues === 0)
       return res.status(400).json({
         error: `Request body must contain data`
       })
+      console.log(userToUpdate),
 
     UserService.updateUser(
       req.app.get('db'),
