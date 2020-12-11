@@ -62,14 +62,15 @@ userRouter
               newUser
             )
               .then(user => {
+                const sub = user.email
+                const payload = { user_id: user.user_id }
                 res
                   .status(201)
                   .location(path.posix.join(req.originalUrl, `/${user.user_id}`))
-                const sub = user.email
-                const payload = { user_id: user.user_id }
                   .json(
-                    { authToken: AuthService.createJwt(sub, payload) },
-                    serializeUser(user))
+                    { authToken: AuthService.createJwt(sub, payload),
+                      user: serializeUser(user)
+                    })
               })
           })
       })
