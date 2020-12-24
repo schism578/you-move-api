@@ -25,6 +25,16 @@ userRouter
   .get(requireAuth, (req, res, next) => {
     res.json(req.user)
   })
+  .delete(requireAuth, (req, res, next) => {
+    UserService.deleteUser(
+      req.app.get('db'),
+      req.user.user_id
+    )
+      .then(numRowsAffected => {
+        res.status(204).end()
+      })
+      .catch(next)
+  })
   .post(jsonParser, (req, res, next) => {
     const { first_name, last_name, email, password, gender, height, weight, age, bmr } = req.body
     const newUser = { first_name, last_name, email, password, gender, height, weight, age, bmr }
@@ -98,7 +108,7 @@ userRouter
   .delete((req, res, next) => {
     UserService.deleteUser(
       req.app.get('db'),
-      req.params.user_id
+      req.user.user_id
     )
       .then(numRowsAffected => {
         res.status(204).end()
